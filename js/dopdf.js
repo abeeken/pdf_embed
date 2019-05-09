@@ -8,7 +8,7 @@ function doPdf(url){
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
     // The workerSrc property shall be specified.
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
 
     var currPage = 1; //Pages are 1-based not 0-based
     var thePDF = null;

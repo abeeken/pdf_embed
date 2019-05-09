@@ -4,25 +4,9 @@
     function pdfEmbed($atts = []){
         $atts = array_change_key_case((array)$atts, CASE_LOWER);
         if(array_key_exists("pdf", $atts)){
-            // The PDF url exists, let's do it.
-            if(is_user_logged_in()){
-                $pdf = resolve_url($atts["pdf"]);
-                $current_user = wp_get_current_user();
-                $email = explode("@",$current_user->user_email)[1];
-                $url_parts = explode(":",$pdf);
-                /*if($url_parts[0] == "https"){
-                    $url_parts[0] = "http";
-                }*/
-                $pdf = $url_parts[0].":".$url_parts[1];
-                if(strpos($email, "lincoln.ac.uk") !== false){
-                    $output = pdfControlBar();
-                    $output .= '<script>window.onload = function(){doPdf("'.$pdf.'");setPDFTop();}</script>';
-                } else {
-                    $output = notLoggedIn(FALSE);
-                }
-            } else {
-                $output = notLoggedIn();
-            }
+            $pdf = $atts['pdf'];
+            $output = pdfControlBar();
+            $output .= '<script>window.onload = function(){doPdf("'.$pdf.'");setPDFTop();}</script>';
             return $output;
         }
     }
