@@ -14,4 +14,5 @@
     include_once("fns/shortcode.php");
     include_once("fns/pdf_control_bar.php");
     include_once("fns/pdf_button.php");
+    include_once("fns/admin.php");
 ?>
