@@ -29,7 +29,7 @@ function doPdf(url){
 
     function handlePages(page){
         //We'll create a canvas for each page to draw it on, as well as an anchor
-        var container = document.getElementById('the-dissertation');
+        var container = document.getElementById('pdf-container');
         var canvas = document.createElement( "canvas" );
         var anchor = document.createElement("a");
         var name = document.createAttribute("name");
