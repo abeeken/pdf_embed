@@ -1,5 +1,10 @@
 var numPages = 0;
 
+/**
+ * 
+ * @param {String} url 
+ */
+
 function doPdf(url){
     // If absolute URL from the remote server is provided, configure the CORS
     // header on that server.
@@ -26,7 +31,10 @@ function doPdf(url){
         pdf.getPage( 1 ).then( handlePages );
     });
 
-
+    /**
+     * 
+     * @param {Object} page 
+     */
     function handlePages(page){
         //We'll create a canvas for each page to draw it on, as well as an anchor
         var container = document.getElementById('pdf-container');
@@ -43,26 +51,14 @@ function doPdf(url){
         canvas.width = container.offsetWidth;
         var viewport = page.getViewport(canvas.width / page.getViewport(1.0).width);
         canvas.height = viewport.height;
-
+    
         //Draw it on the canvas
-        /*page.getTextContent().then(function (textContent){
-            var textLayer = new TextLayerBuilder($textLayerDiv.get(0), currPage-1);
-            textLayer.setTextContent(textContent);
-
-            var renderContext = {
-                canvasContext: context,
-                viewport: viewport,
-                textLayer: textLayer
-            }
-
-            page.render(renderContext);
-        });*/
         page.render({canvasContext: context, viewport: viewport});
-
+    
         //Add elements
         container.appendChild( anchor );
         container.appendChild( canvas );
-
+    
         //Move to next page
         currPage++;
         if ( thePDF !== null && currPage <= numPages )
@@ -75,7 +71,7 @@ function doPdf(url){
             $('#loading-pdf').remove();
         }
     }
-
+    
     function pageDropdown(){
         for(i=1;i<=numPages;++i){
             $('#dropdown-pages').html($('#dropdown-pages').html()+'<a class="dropdown-item page-link" data-page="'+i+'">Page '+i+'</a>');
